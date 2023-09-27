@@ -1,13 +1,19 @@
 import "./App.css";
-import * as React from "react";
-import Button from "@mui/material/Button";
+import { useEffect } from "react";
+import { auth } from "./providers/api";
 function App() {
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await auth();
+      console.log(res);
+    };
+
+    fetchData().catch(console.error);
+  }, []);
+
   return (
     <>
-      <p>Movie wweb</p>
-      <Button variant="text">Text</Button>
-<Button variant="contained">Contained</Button>
-<Button variant="outlined">Outlined</Button>
+      <p>Movie Web</p>
     </>
   );
 }
