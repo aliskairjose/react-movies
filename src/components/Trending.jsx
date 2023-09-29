@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { trending } from "../providers/trending";
-import CardSmall from "./cards/CardSmall";
 import { Tab } from "@headlessui/react";
+import CardSmall from "./cards/CardSmall";
 
 export default function Trending() {
   const [data, setData] = useState(null);
@@ -56,10 +56,6 @@ export default function Trending() {
               Esta semana
             </Tab>
           </Tab.List>
-          {/* <Tab.Panels className="mt-2">
-            <Tab.Panel>1</Tab.Panel>
-            <Tab.Panel>2</Tab.Panel>
-          </Tab.Panels> */}
         </Tab.Group>
       </div>
       <div className="gap-5 py-4 px-6 overflow-x-auto trending-display">
