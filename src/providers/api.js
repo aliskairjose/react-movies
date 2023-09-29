@@ -18,3 +18,26 @@ export const trending = async (slug, timeWindow='day') => {
     .catch(console.error);
 };
 
+/**
+ * 
+ * @param {string} slug now_playing | popular | upcoming | top_rated
+ * @returns 
+ */
+export const movies = async (slug) => {
+  return await axios
+    .get(`movie/${slug}`)
+    .then((res) => res.data)
+    .catch(console.error);
+};
+
+/**
+ * 
+ * @param {string} slug airing_today | on_the_air | popular | top_rated
+ * @returns 
+ */
+export const tvSeries = async (slug) => {
+  return await axios
+    .get(`tv/${slug}`)
+    .then((res) => res.data)
+    .catch(console.error);
+};

@@ -1,9 +1,8 @@
 import "./App.css";
 import { useEffect } from "react";
 import { auth } from "./providers/auth";
-import Button from "@mui/material/Button";
-// import { collectionList } from "./providers/search";
-import { trending } from "./providers/trending";
+import Layout from "./layout/Layout";
+import { Outlet } from "react-router-dom";
 
 function App() {
   useEffect(() => {
@@ -11,17 +10,11 @@ function App() {
     fetchData().catch(console.error);
   }, []);
 
-  const fetchData = async () => {
-    // const res = await collectionList();
-    await trending("movie", "week");
-  };
-
   return (
     <>
-      <p>Movie Web</p>
-      <Button variant="outlined" onClick={fetchData}>
-        Fetch data
-      </Button>
+      <Layout>
+        <Outlet />
+      </Layout>
     </>
   );
 }
