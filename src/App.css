@@ -4,3 +4,37 @@
   /* padding: 2rem; */
   /* text-align: center; */
 }
+
+.home-subtitle {
+  font-weight: 600;
+  color: #78350f;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin-inline-end: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.card-title {
+  text-wrap: balance;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #b45309;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #78350f;
+    border-radius: 5px;
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

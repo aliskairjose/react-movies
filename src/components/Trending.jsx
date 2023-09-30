@@ -23,20 +23,20 @@ export default function Trending() {
   return (
     <>
       <div className="ms-6 flex">
-        <p className=" font-semibold tracking-wider text-2xl me-4">Tendecias</p>
+        <p className="home-subtitle">Tendecias</p>
         <Tab.Group
           className="w-52"
           onChange={(index) => setTimeWindow(index?'week':'day')}
         >
-          <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+          <Tab.List className="flex space-x-1 rounded-xl bg-amber-900 p-[0.2rem]">
             <Tab
               className={({ selected }) =>
                 classNames(
-                  "w-full rounded-lg py-0.5 text-sm font-medium leading-5 text-blue-700",
-                  "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                  "w-full rounded-lg py-0.5 text-sm font-medium leading-5 text-amber-600",
+                  "ring-white ring-opacity-60 ring-offset-2 ring-offset-amber-300 focus:outline-none focus:ring-2",
                   selected
                     ? "bg-white shadow"
-                    : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                    : "text-amber-500 hover:bg-amber-400/[0.12] hover:text-amber-400"
                 )
               }
             >
@@ -45,11 +45,11 @@ export default function Trending() {
             <Tab
               className={({ selected }) =>
                 classNames(
-                  "w-full rounded-lg py-0.5 text-sm font-medium leading-5 text-blue-700",
-                  "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
+                  "w-full rounded-lg py-0.5 text-sm font-medium leading-5 text-amber-600",
+                  "ring-white ring-opacity-60 ring-offset-2 ring-offset-amber-300 focus:outline-none focus:ring-2",
                   selected
                     ? "bg-white shadow"
-                    : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+                    : "text-amber-500 hover:bg-amber-400/[0.12] hover:text-amber-400"
                 )
               }
             >

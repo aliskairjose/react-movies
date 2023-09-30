@@ -5,7 +5,7 @@ import TvSeries from "../components/TvSeries";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-y-8">
+    <div className="flex flex-col gap-y-8 border rounded p-4 shadow-md">
       <section>
         <Trending />
       </section>

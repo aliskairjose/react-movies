@@ -5,8 +5,8 @@ import viteLogo from "/vite.svg";
 export default function Footer() {
   const date = new Date();
   return (
-    <footer className="w-full ">
-      <hr className="h-0.5 border-t-0  bg-neutral-100 opacity-100 dark:opacity-50 " />
+    <footer className="w-full pt-4 ">
+      <hr className="h-0.5 border-t-0  bg-amber-900 opacity-100 dark:opacity-50 " />
       <div className="flex lg:flex-row flex-col items-center lg:p-6 p-4 ">
         <div className="flex lg:flex-1 flex-none text-left md:text-base text-sm ">
           © {date.getFullYear()}. Desarrollada con
