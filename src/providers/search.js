@@ -30,7 +30,7 @@ export const searchKeyword = async (query, page) => {
 
 export const searchMovie = async (query, page) => {
   return await instance
-    .get("search/keyword", { params: { query, page } })
+    .get("search/movie", { params: { query, page } })
     .then((res) => res.data)
     .catch(console.error);
 };

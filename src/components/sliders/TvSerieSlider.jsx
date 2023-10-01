@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import CardSmall from "./cards/CardSmall";
-import { tvSeries } from "../providers/api";
+import CardSmall from "../cards/CardSmall";
+import { tvSeries } from "../../providers/api";
 import { Tab } from "@headlessui/react";
 
 const SLUG = {
@@ -10,7 +10,7 @@ const SLUG = {
   3: "popular",
 };
 
-export default function TvSeries() {
+export default function TvSerieSlider() {
   const [data, setData] = useState(null);
   const [slug, setSlug] = useState('airing_today');
 
@@ -34,7 +34,7 @@ export default function TvSeries() {
           Series de TV
         </p>
         <Tab.Group
-          className="w-[400px]"
+          className="w-[500px]"
           onChange={(index) => {
             setSlug(SLUG[index]);
           }}
@@ -51,7 +51,7 @@ export default function TvSeries() {
                 )
               }
             >
-              En transmisión
+               Trasmitiendo hoy
             </Tab>
             <Tab
               className={({ selected }) =>
@@ -64,7 +64,7 @@ export default function TvSeries() {
                 )
               }
             >
-             Al aire
+             En televisión
             </Tab>
             <Tab
               className={({ selected }) =>

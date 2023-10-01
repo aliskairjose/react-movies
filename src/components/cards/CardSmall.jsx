@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Link } from "react-router-dom";
-const urlImg = import.meta.env.VITE_IMG_URL;
+const urlImg = import.meta.env.VITE_IMG_URL_SMALL;
 
 export default function CardSmall({ data }) {
   return (

@@ -1,20 +1,21 @@
-import React from "react";
-import Trending from "../components/Trending";
-import Movies from "../components/Movies";
-import TvSeries from "../components/TvSeries";
+import TrendingSlider from "../components/sliders/TrendingSlider";
+import MovieSlider from "../components/sliders/MovieSlider";
+import TvSerieSlider from "../components/sliders/TvSerieSlider";
+import Search from "../components/Search";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-y-8 border rounded p-4 shadow-md">
-      <section>
-        <Trending />
-      </section>
-      <section>
-        <Movies />
-      </section>
-      <section>
-        <TvSeries />
-      </section>
-    </div>
+
+      <div className="flex flex-col gap-y-8 p-4">
+        <section>
+          <TrendingSlider />
+        </section>
+        <section>
+          <MovieSlider />
+        </section>
+        <section>
+          <TvSerieSlider />
+        </section>
+      </div>
   );
 }
