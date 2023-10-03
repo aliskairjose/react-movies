@@ -124,7 +124,7 @@ export default function Detail() {
               {detalle?.overview}
             </span>
           </p>
-          <div className="grid gap-2 grid-cols-3 w-full mt-2">
+          <div className="grid gap-2 grid-cols-3 w-full mt-4">
             {creditos?.crew
               .map((c, i) => (
                 <p key={i} className="text-center text-sm">
@@ -144,11 +144,13 @@ export default function Detail() {
             <div className="gap-3 py-2 overflow-x-auto trending-display ">
               {creditos?.cast.map((c, i) => (
                 <div key={i} className="border rounded w-[138px]">
+                  <Link to={`../person/${c?.id}`}>
                   <img
                     src={getProfileImage(c)}
                     alt={c?.name}
                     className="rounded-t h-[175px] w-[138px]"
                   />
+                  </Link>
                   <div className="m-2">
                     <p className="m-0 p-0 font-medium">{c?.name}</p>
                     <p className="m-0 p-0 font-light">{c?.character}</p>
