@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-import Header from "./Header";
+import profileImg from "../assets/images/profile.png";
+import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import {
   credits,
@@ -9,6 +10,7 @@ import {
 } from "../providers/movieAndTvSeries";
 import "../assets/styles/Detail.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import { Link } from "react-router-dom";
 
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
@@ -54,27 +56,29 @@ export default function Detail() {
     });
   };
 
+  const getProfileImage = (c) =>
+    c?.profile_path ? `${urlImg}original/${c?.profile_path}` : profileImg;
+
   return (
     <>
       <Header />
       <div
-        className="bg-black h-[calc(100vh-150px)] relative fondo"
+        className="bg-black h-[calc(100vh-180px)] relative fondo"
         style={{
           backgroundImage: `url(${backdropImg()})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "left center",
         }}
       ></div>
-      <div className="flex max-w-7xl m-auto absolute top-[15%] left-[10%]">
-        <div className="w-1/4">
+      <div className="flex max-w-7xl m-auto absolute top-[12%] left-[10%]">
+        <div className="w-1/4 p-2">
           <img
-            className="rounded-md m-auto"
-            src={`${urlImg}w300/${detalle?.poster_path}`}
+            className="rounded-md"
+            src={`${urlImg}original/${detalle?.poster_path}`}
             alt={detalle?.original_title}
           />
         </div>
-        <div className="w-3/4 p-8 text-white">
+        <div className="w-3/4 pt-4 px-4 text-white">
           <h1 className="text-4xl font-bold tracking-wider ">
             {detalle?.title}
             <span className="font-light text-3xl">({getYear()})</span>
@@ -86,9 +90,11 @@ export default function Detail() {
           </h1>
           <p>
             {detalle?.release_date}{" "}
-            <span className="uppercase font-thin">({detalle?.original_language})</span>
+            <span className="uppercase font-thin">
+              ({detalle?.original_language})
+            </span>
             {detalle?.genres.map((g, i) => (
-              <span key={i} className="px-1">
+              <span key={i} className="px-1 before:content-['_●']">
                 {g.name}
               </span>
             ))}
@@ -111,16 +117,25 @@ export default function Detail() {
                 })}
               />
             </div>
-            <span>Puntuaciones de usuario</span>
+            <span>Puntuación de usuario</span>
           </div>
-          <p className="italic py-3 opacity-70 text-xl">{detalle?.tagline}</p>
+          <p className="italic py-3 opacity-70">{detalle?.tagline}</p>
           <p className="font-medium text-xl">
             Resumen
-            <span className="font-normal block text-base">
+            <span className="font-normal block text-sm">
               {detalle?.overview}
             </span>
           </p>
-          
+          <div className="grid gap-2 grid-cols-3 w-full mt-2">
+            {creditos?.crew
+              .map((c, i) => (
+                <p key={i} className="text-center text-sm">
+                  <span className="font-medium block">{c.name}</span>
+                  <span className="font-thin">{c.job}</span>
+                </p>
+              ))
+              .slice(0, 6)}
+          </div>
         </div>
       </div>
 
@@ -130,9 +145,9 @@ export default function Detail() {
             <p className="font-medium text-xl">Actores principales</p>
             <div className="gap-3 py-2 overflow-x-auto trending-display ">
               {creditos?.cast.map((c, i) => (
-                <div key={i} className="border rounded">
+                <div key={i} className="border rounded w-[138px]">
                   <img
-                    src={`${urlImg}original/${c?.profile_path}`}
+                    src={getProfileImage(c)}
                     alt={c?.name}
                     className="rounded-t h-[175px] w-[138px]"
                   />
@@ -143,7 +158,9 @@ export default function Detail() {
                 </div>
               ))}
             </div>
+            <Link to={"./cast"}>
             <h4 className="font-medium mt-4">Reparto y equipo completo</h4>
+              </Link>
           </section>
 
           <section className="py-7 border-b h-40"></section>
