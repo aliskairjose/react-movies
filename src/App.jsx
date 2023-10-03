@@ -11,11 +11,9 @@ function App() {
   }, []);
 
   return (
-    <>
       <Layout>
         <Outlet />
       </Layout>
-    </>
   );
 }
 

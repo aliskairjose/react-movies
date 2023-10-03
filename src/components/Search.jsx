@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Form, useLocation, useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { searchMovie } from "../providers/search";
 
 export default function Search() {
@@ -32,7 +32,7 @@ export default function Search() {
   }
 
   return (
-    <header className="py-6">
+    <header>
       <div className="flex px-4">
         <Form className="flex flex-1" action="" onSubmit={submitHandler}>
           <input

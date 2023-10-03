@@ -15,9 +15,9 @@ const rutas = createBrowserRouter(
       <Route exact path="/movies" element={<App />}>
         <Route exact path="/movies" element={<Home />} />
         <Route exact path="/movies/results" element={<Result />} />
+        <Route exact path="/movies/detail/:mediaType/:id" element={<Detail />} />
+        <Route exact path="/movies/detail/:mediaType/:id/cast" element={<Cast />} />
       </Route>
-      <Route exact path="/movies/detail/:mediaType/:id" element={<Detail />} />
-      <Route exact path="/movies/detail/:mediaType/:id/cast" element={<Cast />} />
       {/* 
       <Route exact path="*" element={<ErrorPage />}></Route> */}
     </>

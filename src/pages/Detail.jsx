@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import profileImg from "../assets/images/profile.png";
-import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import {
   credits,
@@ -46,7 +45,7 @@ export default function Detail() {
     return date.getFullYear();
   };
 
-  const getProviderLogo = () => proveedor?.results.VE?.flatrate[0].logo_path;
+  // const getProviderLogo = () => proveedor?.results.VE?.flatrate[0].logo_path;
 
   const getLanguage = () => {
     return detalle?.spoken_languages.map((l) => {
@@ -60,8 +59,7 @@ export default function Detail() {
     c?.profile_path ? `${urlImg}original/${c?.profile_path}` : profileImg;
 
   return (
-    <>
-      <Header />
+    <> 
       <div
         className="bg-black h-[calc(100vh-180px)] relative fondo"
         style={{
