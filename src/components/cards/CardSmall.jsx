@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Link } from "react-router-dom";
-const urlImg = import.meta.env.VITE_IMG_URL_SMALL;
+const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
 export default function CardSmall({ data }) {
   return (
@@ -9,7 +9,7 @@ export default function CardSmall({ data }) {
       <div>
         <Link to={`./detail/${data.media_type}/${data.id}`}>
           <img
-            src={`${urlImg}${data.poster_path}`}
+            src={`${urlImg}w154/${data.poster_path}`}
             alt={data.title}
             className="rounded shadow"
           />

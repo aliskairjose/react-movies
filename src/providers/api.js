@@ -41,10 +41,3 @@ export const tvSeries = async (slug) => {
     .then((res) => res.data)
     .catch(console.error);
 };
-
-export const detail = async (mediaType, id) => {
-  return await axios
-    .get(`${mediaType}/${id}?language=es-ES`)
-    .then((res) => res.data)
-    .catch(console.error);
-};

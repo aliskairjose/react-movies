@@ -41,13 +41,13 @@ export default function Search() {
             name="search"
             id="search"
             autoComplete="search"
-            className="w-full block flex-1 border rounded-xl bg-transparent py-1.5 px-4 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+            className="w-full block flex-1 border border-amber-900 rounded-md bg-transparent py-1.5 px-4 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
             placeholder="Buscar película, serie de TV o persona..."
           />
         </Form>
         <button
           type="button"
-          className="bg-amber-600 rounded-xl px-6 text-amber-900 ms-4"
+          className="bg-gray-100 border border-amber-900 rounded-md px-6 text-amber-900 ms-4"
           onClick={onClickHandler}
         >
           Buscar
