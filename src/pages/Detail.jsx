@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import noPoster from '../assets/images/no-poster.jpeg'
 import { useEffect, useState } from "react";
 import {
   credits,
@@ -160,7 +161,7 @@ export default function Detail() {
               {detalle?.production_companies.map((c, i) => (
                 <div className="rounded-md w-[130px]" key={i}>
                   <img
-                    src={`${urlImg}w300/${c.logo_path}`}
+                    src={c.logo_path ? `${urlImg}w300/${c.logo_path}` : noPoster}
                     alt={c?.name}
                     className="rounded-md h-[154px] w-full object-contain"
                   />
