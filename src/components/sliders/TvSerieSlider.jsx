@@ -4,7 +4,7 @@ import { tvSeries } from "../../providers/api";
 import { Tab } from "@headlessui/react";
 
 const SLUG = {
-  o: "airing_today",
+  0: "airing_today",
   1: "on_the_air",
   2: "top_rated",
   3: "popular",

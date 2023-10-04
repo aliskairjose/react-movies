@@ -55,8 +55,8 @@ export default function CRedits() {
         </div>
       </section>
       <section className="flex max-w-7xl mx-auto">
-        <div className="w-1/3">
-          <h1 className="text-xl font-bold tracking-wider mb-6">
+        <div className="w-1/2">
+          <h1 className="text-xl font-bold tracking-wider mb-4">
             {"Reparto "}
             <span className="text-gray-500 font-normal">{cast?.length}</span>
           </h1>
@@ -77,7 +77,7 @@ export default function CRedits() {
           ))}
         </div>
         <div className="w-1/3">
-          <h1 className="text-xl font-bold tracking-wider mb-6">
+          <h1 className="text-xl font-bold tracking-wider mb-4">
             {"Equipo "}
             <span className="text-gray-500 font-normal">{crew?.length}</span>
           </h1>

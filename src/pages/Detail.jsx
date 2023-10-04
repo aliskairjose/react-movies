@@ -10,6 +10,7 @@ import "../assets/styles/Detail.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Link } from "react-router-dom";
 import PersonCard from "../components/cards/PersonCard";
+import { LinkIcon } from "@heroicons/react/20/solid";
 
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
@@ -76,7 +77,7 @@ export default function Detail() {
         <div className="w-3/4 pt-4 px-4 text-white">
           <h1 className="text-4xl font-bold tracking-wider ">
             {detalle?.title}
-            <span className="font-light text-3xl">({getYear()})</span>
+            <span className="font-light text-3xl ms-2">({getYear()})</span>
             {/* <img
               src={`${urlImg}w45/${getProviderLogo()}`}
               alt="providerLogo"
@@ -134,18 +135,18 @@ export default function Detail() {
         </div>
       </div>
 
-      <div className="flex max-w-7xl mx-auto py-6 ">
+      <div className="flex max-w-7xl mx-auto py-2 ">
         <div className="w-9/12 py-7">
-          <section className="border-b pb-4 ">
+          <section className="border-b pb-4 my-4">
             <p className="font-medium text-xl">Actores principales</p>
             <div className="gap-3 py-2 overflow-x-auto trending-display ">
-              {creditos?.cast.map((c, i) => (
-                <PersonCard person={c} key={i} />
-              )).slice(0,9)}
+              {creditos?.cast
+                .map((c, i) => <PersonCard person={c} key={i} />)
+                .slice(0, 9)}
               <div className="flex items-center me-12 ms-2">
-              <Link className="font-medium" to={'./credits'}>
-                Ver más →
-              </Link>
+                <Link className="font-medium" to={"./credits"}>
+                  Ver más →
+                </Link>
               </div>
             </div>
             <Link to={"./cast"}>
@@ -153,9 +154,29 @@ export default function Detail() {
             </Link>
           </section>
 
-          <section className="py-7 border-b h-40"></section>
+          <section className="border-b pb-4 mt-6">
+            <p className="font-medium text-xl">Productoras</p>
+            <div className="gap-3 py-2 overflow-x-auto trending-display ">
+              {detalle?.production_companies.map((c, i) => (
+                <div className="rounded-md w-[130px]" key={i}>
+                  <img
+                    src={`${urlImg}w300/${c.logo_path}`}
+                    alt={c?.name}
+                    className="rounded-md h-[154px] w-full object-contain"
+                  />
+                  <p className="text-sm font-medium">{c?.name}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
         </div>
         <div className="w-full py-7 px-4">
+          <div className="mb-5">
+            <Link to={detalle?.homepage} style={{visibility: detalle?.homepage ? 'visible' : 'hidden'}}>
+              <LinkIcon className="h-6" />
+            </Link>
+          </div>
           <p className="font-medium">Estado</p>
           <p className="mb-4">{detalle?.status}</p>
           <p className="font-medium">Idioma original</p>
