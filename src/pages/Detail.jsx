@@ -55,9 +55,8 @@ export default function Detail() {
     });
   };
 
-
   return (
-    <> 
+    <>
       <div
         className="bg-black h-[calc(100vh-180px)] relative fondo"
         style={{
@@ -141,12 +140,17 @@ export default function Detail() {
             <p className="font-medium text-xl">Actores principales</p>
             <div className="gap-3 py-2 overflow-x-auto trending-display ">
               {creditos?.cast.map((c, i) => (
-                <PersonCard person={c} key={i}/>
-              ))}
+                <PersonCard person={c} key={i} />
+              )).slice(0,9)}
+              <div className="flex items-center me-12 ms-2">
+              <Link className="font-medium" to={'./credits'}>
+                Ver más →
+              </Link>
+              </div>
             </div>
             <Link to={"./cast"}>
-            <h4 className="font-medium mt-4">Reparto y equipo completo</h4>
-              </Link>
+              <h4 className="font-medium mt-4">Reparto y equipo completo</h4>
+            </Link>
           </section>
 
           <section className="py-7 border-b h-40"></section>

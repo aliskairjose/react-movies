@@ -6,14 +6,14 @@ const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
 export default function PersonCard({ person }) {
   const getProfileImage = (c) =>
-    c?.profile_path ? `${urlImg}original/${person?.profile_path}` : profileImg;
+    c?.profile_path ? `${urlImg}w154/${person?.profile_path}` : profileImg;
   return (
-    <div className="border rounded-md shadow w-[150px]">
+    <div className="border rounded-md shadow w-[130px]">
       <Link to={`../person/${person?.id}`}>
         <img
           src={getProfileImage(person)}
           alt={person?.name}
-          className="rounded-t-md h-[175px] w-full"
+          className="rounded-t-md h-[154px] w-full object-cover object-center"
         />
       </Link>
       <div className="m-2 text-sm">

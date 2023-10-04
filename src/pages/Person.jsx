@@ -58,7 +58,7 @@ export default function Person() {
         <div className="gap-3 overflow-x-auto trending-display ">
           {combined?.cast?.map((c, i)=>(
             <SimpleMovieCard movie={c} key={i}/>
-          ))}
+          )).slice(0,10)}
         </div>
       </div>
     </div>

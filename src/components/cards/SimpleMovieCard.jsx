@@ -9,7 +9,7 @@ export default function SimpleMovieCard({ movie }) {
     c?.poster_path ? `${urlImg}original/${movie?.poster_path}` : profileImg;
   return (
     <div className="rounded">
-      <Link to={`../movie/${movie?.id}`}>
+      <Link to={`../detail/movie/${movie?.id}`}>
         <img
           src={getProfileImage(movie)}
           alt={movie?.title}
@@ -17,7 +17,7 @@ export default function SimpleMovieCard({ movie }) {
         />
       </Link>
       <div className="m-2">
-        <p className="m-0 p-0 text-sm break-words w-[120px]">{movie?.title}</p>
+        <p className="m-0 p-0 text-sm w-[120px]">{movie?.title}</p>
       </div>
     </div>
   );
