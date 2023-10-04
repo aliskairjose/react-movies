@@ -8,7 +8,7 @@ export default function SimpleMovieCard({ movie }) {
   const getProfileImage = (c) =>
     c?.poster_path ? `${urlImg}original/${movie?.poster_path}` : profileImg;
   return (
-    <div className="rounded w-[135px]">
+    <div className="rounded">
       <Link to={`../movie/${movie?.id}`}>
         <img
           src={getProfileImage(movie)}
@@ -17,7 +17,7 @@ export default function SimpleMovieCard({ movie }) {
         />
       </Link>
       <div className="m-2">
-        <p className="m-0 p-0 text-sm ">{movie?.title}</p>
+        <p className="m-0 p-0 text-sm break-words w-[120px]">{movie?.title}</p>
       </div>
     </div>
   );
