@@ -7,7 +7,6 @@ export default function Layout({ children }) {
   return (
     <>
       <Header />
-      <Search />
       <main className="min-h-screen">
         {children}
       </main>

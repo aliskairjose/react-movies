@@ -22,7 +22,7 @@ export default function Search() {
         <Form className="flex flex-1" action="" onSubmit={submitHandler}>
           <input
             onChange={onInputHandler}
-            type="text"
+            type="search"
             name="search"
             id="search"
             autoComplete="search"

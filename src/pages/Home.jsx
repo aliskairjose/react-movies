@@ -6,6 +6,7 @@ import Search from "../components/Search";
 export default function Home() {
   return (
     <>
+      <Search />
       <div className="flex flex-col gap-y-8 p-4 max-w-[1280px] mx-auto">
         <section>
           <TrendingSlider />
