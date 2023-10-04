@@ -5,10 +5,8 @@ import Search from "../components/Search";
 
 export default function Home() {
   return (
+    <>
       <div className="flex flex-col gap-y-8 p-4 max-w-[1280px] mx-auto">
-        <section>
-        <Search />
-        </section>
         <section>
           <TrendingSlider />
         </section>
@@ -19,5 +17,6 @@ export default function Home() {
           <TvSerieSlider />
         </section>
       </div>
+    </>
   );
 }

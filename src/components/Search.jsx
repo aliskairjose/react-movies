@@ -1,21 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { Form, useNavigate } from "react-router-dom";
-import { searchMovie } from "../providers/search";
 
 export default function Search() {
   const navigate = useNavigate();
   const query = useRef(null)
-  const [search, setSearch] = useState(null);
-
-  useEffect(() => {
-    if (!search) { return;}
-    const fecthData = async () => {
-      const res = await searchMovie(search);
-      console.log(res.results[0]);
-    };
-
-    fecthData().catch(console.errror);
-  }, [search]);
   
   const onInputHandler = ({ target: { value } }) => query.current = value;
 
@@ -26,14 +14,11 @@ export default function Search() {
     processSearch();
   }
 
-  const processSearch = () => {
-    navigate(`./results?search=${query.current}`)
-    setSearch(query.current)
-  }
+  const processSearch = () =>  navigate(`./results?search=${query.current}`)
 
   return (
-    <header>
-      <div className="flex px-4">
+    <section className="max-w-7xl mx-auto py-3">
+      <div className="flex">
         <Form className="flex flex-1" action="" onSubmit={submitHandler}>
           <input
             onChange={onInputHandler}
@@ -53,6 +38,6 @@ export default function Search() {
           Buscar
         </button>
       </div>
-    </header>
+    </section>
   );
 }
