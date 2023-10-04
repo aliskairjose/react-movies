@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import profileImg from "../assets/images/profile.png";
 import { useEffect, useState } from "react";
 import {
   credits,
@@ -10,6 +9,7 @@ import {
 import "../assets/styles/Detail.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Link } from "react-router-dom";
+import PersonCard from "../components/cards/PersonCard";
 
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
@@ -55,8 +55,6 @@ export default function Detail() {
     });
   };
 
-  const getProfileImage = (c) =>
-    c?.profile_path ? `${urlImg}original/${c?.profile_path}` : profileImg;
 
   return (
     <> 
@@ -143,19 +141,7 @@ export default function Detail() {
             <p className="font-medium text-xl">Actores principales</p>
             <div className="gap-3 py-2 overflow-x-auto trending-display ">
               {creditos?.cast.map((c, i) => (
-                <div key={i} className="border rounded w-[138px]">
-                  <Link to={`../person/${c?.id}`}>
-                  <img
-                    src={getProfileImage(c)}
-                    alt={c?.name}
-                    className="rounded-t h-[175px] w-[138px]"
-                  />
-                  </Link>
-                  <div className="m-2">
-                    <p className="m-0 p-0 font-medium">{c?.name}</p>
-                    <p className="m-0 p-0 font-light">{c?.character}</p>
-                  </div>
-                </div>
+                <PersonCard person={c} key={i}/>
               ))}
             </div>
             <Link to={"./cast"}>

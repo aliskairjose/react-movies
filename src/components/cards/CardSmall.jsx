@@ -5,7 +5,7 @@ const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
 export default function CardSmall({ data }) {
   return (
-    <div className="relative w-[150px] min-w-[150px]">
+    <div className="relative w-[150px]">
       <div>
         <Link to={`./detail/${data.media_type}/${data.id}`}>
           <img

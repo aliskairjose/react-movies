@@ -1,28 +1,31 @@
 import { useEffect, useState } from "react";
-import { detail } from "../providers/people";
+import { combinedCredits, detail } from "../providers/people";
 import { useParams } from "react-router-dom";
+import SimpleMovieCard from "../components/cards/SimpleMovieCard";
 
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
 const GENDER = {
-  0: 'No especificado',
-  1: 'Femenino',
-  2: 'Masculino',
-  3: 'No binario'
-}
+  0: "No especificado",
+  1: "Femenino",
+  2: "Masculino",
+  3: "No binario",
+};
 
 export default function Person() {
   const { id } = useParams();
   const [person, setPerson] = useState(null);
+  const [combined, setCombined] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await detail(id);
-      setPerson(res);
+      const [detalleRes, combinedRes] = await Promise.allSettled([detail(id), combinedCredits(id)])
+      setPerson(detalleRes.value);
+      setCombined(combinedRes.value);
     };
 
     fetchData().catch(console.error);
-  },[]);
+  }, []);
 
   return (
     <div className="flex max-w-7xl mx-auto py-8">
@@ -43,14 +46,20 @@ export default function Person() {
         <p className="font-medium mt-3">Lugar de nacimiento</p>
         <p>{person?.place_of_birth}</p>
         <p className="font-medium mt-3">También conocido como</p>
-        {person?.also_known_as.map((item, index)=>(
-        <p key={index}>{item}</p>
+        {person?.also_known_as.map((item, index) => (
+          <p key={index}>{item}</p>
         ))}
       </div>
       <div className="w-9/12 pl-6 ">
         <h1 className="font-semibold text-3xl mt-1 mb-10">{person?.name}</h1>
         <h3 className="text-xl font-medium mb-2">Biografia</h3>
-        <p>{person?.biography}</p>
+        <p className="mb-6">{person?.biography}</p>
+        <h3 className="text-xl font-medium mb-2">Conocido por</h3>
+        <div className="gap-3 overflow-x-auto trending-display ">
+          {combined?.cast?.map((c, i)=>(
+            <SimpleMovieCard movie={c} key={i}/>
+          ))}
+        </div>
       </div>
     </div>
   );
