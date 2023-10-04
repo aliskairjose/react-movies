@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import noPoster from '../assets/images/no-poster.jpeg'
+import noPoster from "../assets/images/no-poster.jpeg";
 import { useEffect, useState } from "react";
 import {
   credits,
@@ -60,82 +60,82 @@ export default function Detail() {
   return (
     <>
       <div
-        className="bg-black h-[calc(100vh-180px)] relative fondo"
+        className="bg-black h-[500px] relative fondo"
         style={{
           backgroundImage: `url(${backdropImg()})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
-      ></div>
-      <div className="flex max-w-7xl m-auto absolute top-[12%] left-[10%]">
-        <div className="w-1/4 p-2">
-          <img
-            className="rounded-md"
-            src={`${urlImg}original/${detalle?.poster_path}`}
-            alt={detalle?.original_title}
-          />
-        </div>
-        <div className="w-3/4 pt-4 px-4 text-white">
-          <h1 className="text-4xl font-bold tracking-wider ">
-            {detalle?.title}
-            <span className="font-light text-3xl ms-2">({getYear()})</span>
-            {/* <img
+      >
+        <div className="flex max-w-7xl m-auto absolute top-4 left-[5%]">
+          <div className="w-1/4 p-2">
+            <img
+              className="rounded-md"
+              src={`${urlImg}original/${detalle?.poster_path}`}
+              alt={detalle?.original_title}
+            />
+          </div>
+          <div className="w-3/4 pt-4 px-4 text-white">
+            <h1 className="text-4xl font-bold tracking-wider ">
+              {detalle?.title}
+              <span className="font-light text-3xl ms-2">({getYear()})</span>
+              {/* <img
               src={`${urlImg}w45/${getProviderLogo()}`}
               alt="providerLogo"
               className="inline ms-3 rounded"
             /> */}
-          </h1>
-          <p>
-            {detalle?.release_date}{" "}
-            <span className="uppercase font-thin">
-              ({detalle?.original_language})
-            </span>
-            {detalle?.genres.map((g, i) => (
-              <span key={i} className="px-1 before:content-['_●']">
-                {g.name}
+            </h1>
+            <p>
+              {detalle?.release_date}{" "}
+              <span className="uppercase font-thin">
+                ({detalle?.original_language})
               </span>
-            ))}
-          </p>
-          <div className="flex gap-3 items-center mt-4">
-            <div className="w-16 inline-block">
-              <CircularProgressbar
-                value={Math.round(detalle?.vote_average * 10)}
-                background
-                backgroundPadding={5}
-                strokeWidth={6}
-                minValue={0}
-                maxValue={100}
-                text={`${Math.round(detalle?.vote_average * 10)}%`}
-                styles={buildStyles({
-                  pathColor: `#92400e`,
-                  textSize: "27px",
-                  textColor: "black",
-                  backgroundColor: "#E1E3E5",
-                })}
-              />
+              {detalle?.genres.map((g, i) => (
+                <span key={i} className="px-1 before:content-['_●']">
+                  {g.name}
+                </span>
+              ))}
+            </p>
+            <div className="flex gap-3 items-center mt-4">
+              <div className="w-16 inline-block">
+                <CircularProgressbar
+                  value={Math.round(detalle?.vote_average * 10)}
+                  background
+                  backgroundPadding={5}
+                  strokeWidth={6}
+                  minValue={0}
+                  maxValue={100}
+                  text={`${Math.round(detalle?.vote_average * 10)}%`}
+                  styles={buildStyles({
+                    pathColor: `#92400e`,
+                    textSize: "27px",
+                    textColor: "black",
+                    backgroundColor: "#E1E3E5",
+                  })}
+                />
+              </div>
+              <span>Puntuación de usuario</span>
             </div>
-            <span>Puntuación de usuario</span>
-          </div>
-          <p className="italic py-3 opacity-70">{detalle?.tagline}</p>
-          <p className="font-medium text-xl">
-            Resumen
-            <span className="font-normal block text-sm">
-              {detalle?.overview}
-            </span>
-          </p>
-          <div className="grid gap-2 grid-cols-3 w-full mt-4">
-            {creditos?.crew
-              .map((c, i) => (
-                <p key={i} className="text-center text-sm">
-                  <span className="font-medium block">{c.name}</span>
-                  <span className="font-thin">{c.job}</span>
-                </p>
-              ))
-              .slice(0, 6)}
+            <p className="italic py-3 opacity-70">{detalle?.tagline}</p>
+            <p className="font-medium text-xl">
+              Resumen
+              <span className="font-normal block text-sm">
+                {detalle?.overview}
+              </span>
+            </p>
+            <div className="grid gap-2 grid-cols-3 w-full mt-4">
+              {creditos?.crew
+                .map((c, i) => (
+                  <p key={i} className="text-center text-sm">
+                    <span className="font-medium block">{c.name}</span>
+                    <span className="font-thin">{c.job}</span>
+                  </p>
+                ))
+                .slice(0, 6)}
+            </div>
           </div>
         </div>
       </div>
-
       <div className="flex max-w-7xl mx-auto py-2 ">
         <div className="w-9/12 py-7">
           <section className="border-b pb-4 my-4">
@@ -161,7 +161,9 @@ export default function Detail() {
               {detalle?.production_companies.map((c, i) => (
                 <div className="rounded-md w-[130px]" key={i}>
                   <img
-                    src={c.logo_path ? `${urlImg}w300/${c.logo_path}` : noPoster}
+                    src={
+                      c.logo_path ? `${urlImg}w300/${c.logo_path}` : noPoster
+                    }
                     alt={c?.name}
                     className="rounded-md h-[154px] w-full object-contain"
                   />
@@ -170,11 +172,13 @@ export default function Detail() {
               ))}
             </div>
           </section>
-
         </div>
         <div className="w-full py-7 px-4">
           <div className="mb-5">
-            <Link to={detalle?.homepage} style={{visibility: detalle?.homepage ? 'visible' : 'hidden'}}>
+            <Link
+              to={detalle?.homepage}
+              style={{ visibility: detalle?.homepage ? "visible" : "hidden" }}
+            >
               <LinkIcon className="h-6" />
             </Link>
           </div>
