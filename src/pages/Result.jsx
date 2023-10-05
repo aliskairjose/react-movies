@@ -8,6 +8,7 @@ import {
   searchTV,
 } from "../providers/search";
 import { Form, useLocation, useSearchParams } from "react-router-dom";
+const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
 export default function Result() {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -60,7 +61,7 @@ export default function Result() {
 
   return (
     <>
-      <section className="mb-3 border border-amber-900 bg-transparent py-1">
+      <section className="mb-8 border border-amber-900 bg-transparent py-1">
         <div className="flex max-w-7xl mx-auto">
           <Form className="flex flex-1" action="" onSubmit={submitHandler}>
             <input
@@ -75,10 +76,10 @@ export default function Result() {
           </Form>
         </div>
       </section>
-      <div className="flex gap-5 max-w-7xl mx-auto">
-        <aside className="min-w-[260px] w-[260px] min-h-[200px] border border-amber-600 rounded-lg m-0 p-0">
-          <div className="p-5 h-24 bg-amber-600 border rounded-t-lg text-lg text-white font-semibold">
-            {"Resultados de la búsqueda"}
+      <section className="flex gap-5 max-w-7xl mx-auto">
+        <aside className="min-w-[260px] w-[260px] h-fit border border-amber-900 rounded-lg m-0 p-0">
+          <div className="p-5 h-24 bg-amber-900 border rounded-t-lg text-lg text-white font-semibold">
+            {"Resultados de la búsqueda"} {index}
           </div>
           <div className="mt-2">
             <ul>
@@ -145,8 +146,71 @@ export default function Result() {
             </ul>
           </div>
         </aside>
-        <main className="w-full border border-amber-600 rounded">Main</main>
-      </div>
+        <main className="min-w-[1000px] w-[1000px]rounded">
+          <section
+            className="px-4"
+            style={{ display: index === 0 ? "block" : "none" }}
+          >
+            {movies?.results?.map((m, i) => (
+              <div key={i} className="flex w-full border rounded-md mb-4">
+                <img
+                  src={`${urlImg}w92${m?.poster_path}`}
+                  alt={m?.title}
+                  className="rounded-l-lg h-[142px] w-[94px]"
+                />
+                <div className="px-4 flex flex-col justify-around">
+                  <div>
+                    <p className="font-medium text-lg">{m?.title}</p>
+                    <p className="text-gray-400">{m?.release_date}</p>
+                  </div>
+                  <p className="line-clamp-2 text-sm">{m?.overview}</p>
+                </div>
+              </div>
+            ))}
+          </section>
+          <section
+            className="px-4"
+            style={{ display: index === 1 ? "block" : "none" }}
+          >
+            {series?.results?.map((m, i) => (
+              <div key={i} className="flex w-full border rounded-md mb-4">
+                <img
+                  src={`${urlImg}w92${m?.poster_path}`}
+                  alt={m?.title}
+                  className="rounded-l-lg h-[142px] w-[94px]"
+                />
+                <div className="px-4 flex flex-col justify-around">
+                  <div>
+                    <p className="font-medium text-lg">{m?.name}</p>
+                    <p className="text-gray-400">{m?.first_air_date}</p>
+                  </div>
+                  <p className="line-clamp-2 text-sm">{m?.overview}</p>
+                </div>
+              </div>
+            ))}
+          </section>
+          <section
+            className="px-4"
+            style={{ display: index === 3 ? "block" : "none" }}
+          >
+            {collection?.results?.map((m, i) => (
+              <div key={i} className="flex w-full border rounded-md mb-4">
+                <img
+                  src={`${urlImg}w92${m?.poster_path}`}
+                  alt={m?.title}
+                  className="rounded-l-lg h-[142px] w-[94px]"
+                />
+                <div className="px-4 flex flex-col justify-around">
+                  <div>
+                    <p className="font-medium text-lg">{m?.name}</p>
+                  </div>
+                  <p className="line-clamp-2 text-sm">{m?.overview}</p>
+                </div>
+              </div>
+            ))}
+          </section>
+        </main>
+      </section>
     </>
   );
 }
