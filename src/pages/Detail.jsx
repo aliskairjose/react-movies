@@ -188,14 +188,23 @@ export default function Detail() {
           <p className="mb-4">{getLanguage()}</p>
           <p className="font-medium">Palabras claves</p>
           <p className="mb-4 flex-wrap flex">
-            {claves?.keywords.map((k, i) => (
-              <span
-                className=" border me-1 mb-1 px-3 py-1 rounded-md bg-amber-900 text-amber-400 font-thin shadow"
-                key={i}
-              >
-                {k.name}
-              </span>
-            ))}
+            {claves?.keywords
+              ? claves?.keywords.map((k, i) => (
+                  <span
+                    className=" border me-1 mb-1 px-3 py-1 rounded-md bg-amber-900 text-amber-400 font-thin shadow"
+                    key={i}
+                  >
+                    {k.name}
+                  </span>
+                ))
+              : claves?.results.map((k, i) => (
+                  <span
+                    className=" border me-1 mb-1 px-3 py-1 rounded-md bg-amber-900 text-amber-400 font-thin shadow"
+                    key={i}
+                  >
+                    {k.name}
+                  </span>
+                ))}
           </p>
         </div>
       </div>

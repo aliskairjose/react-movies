@@ -211,13 +211,15 @@ export default function Result() {
           >
             {person?.results?.map((m, i) => (
               <div key={i} className="flex w-full mb-4">
-                <img
+               <Link to={`../person/${m?.id}`}>
+               <img
                   src={
                     m?.profile_path ? `${urlImg}w92${m?.profile_path}` : noImage
                   }
                   alt={m?.title}
                   className="rounded-lg h-[75px] w-[75px] object-cover border"
                 />
+               </Link>
                 <div className="px-4 flex flex-col justify-around">
                   <div>
                     <p className="font-medium text-lg">{m?.name}</p>
