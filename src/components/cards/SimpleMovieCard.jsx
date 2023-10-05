@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import profileImg from "../../assets/images/profile.png"
+import profileImg from "../../assets/images/no-profile.webp"
 
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 

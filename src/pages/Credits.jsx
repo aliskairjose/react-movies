@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { credits, detail } from "../providers/movieAndTvSeries";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import profileImg from "../assets/images/profile.png";
+import profileImg from "../assets/images/no-profile.webp";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;

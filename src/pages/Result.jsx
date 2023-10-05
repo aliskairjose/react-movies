@@ -7,7 +7,10 @@ import {
   searchPerson,
   searchTV,
 } from "../providers/search";
-import { Form, useLocation, useSearchParams } from "react-router-dom";
+import { Form, Link, useLocation, useSearchParams } from "react-router-dom";
+import noPoster from "../assets/images/no-poster.jpeg";
+import noImage from "../assets/images/no-profile.webp";
+
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
 export default function Result() {
@@ -146,7 +149,8 @@ export default function Result() {
             </ul>
           </div>
         </aside>
-        <main className="min-w-[1000px] w-[1000px]rounded">
+        <main className="min-w-[1000px] w-[1000px]">
+          {/* PELICULAS */}
           <section
             className="px-4"
             style={{ display: index === 0 ? "block" : "none" }}
@@ -154,7 +158,9 @@ export default function Result() {
             {movies?.results?.map((m, i) => (
               <div key={i} className="flex w-full border rounded-md mb-4">
                 <img
-                  src={`${urlImg}w92${m?.poster_path}`}
+                  src={
+                    m?.poster_path ? `${urlImg}w92${m?.poster_path}` : noPoster
+                  }
                   alt={m?.title}
                   className="rounded-l-lg h-[142px] w-[94px]"
                 />
@@ -168,6 +174,7 @@ export default function Result() {
               </div>
             ))}
           </section>
+          {/* SERIES DE TV */}
           <section
             className="px-4"
             style={{ display: index === 1 ? "block" : "none" }}
@@ -175,7 +182,9 @@ export default function Result() {
             {series?.results?.map((m, i) => (
               <div key={i} className="flex w-full border rounded-md mb-4">
                 <img
-                  src={`${urlImg}w92${m?.poster_path}`}
+                  src={
+                    m?.poster_path ? `${urlImg}w92${m?.poster_path}` : noPoster
+                  }
                   alt={m?.title}
                   className="rounded-l-lg h-[142px] w-[94px]"
                 />
@@ -189,6 +198,35 @@ export default function Result() {
               </div>
             ))}
           </section>
+          {/* PERSONAS */}
+          <section
+            className="px-4"
+            style={{ display: index === 2 ? "block" : "none" }}
+          >
+            {person?.results?.map((m, i) => (
+              <div key={i} className="flex w-full mb-4">
+                <img
+                  src={
+                    m?.profile_path ? `${urlImg}w92${m?.profile_path}` : noImage
+                  }
+                  alt={m?.title}
+                  className="rounded-lg h-[75px] w-[75px] object-cover border"
+                />
+                <div className="px-4 flex flex-col justify-around">
+                  <div>
+                    <p className="font-medium text-lg">{m?.name}</p>
+                    <span className="mr-2">{m?.known_for_department}</span>
+                    {m?.known_for.map((k, index) => (
+                      <span key={index} className="font-thin">
+                        {k?.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </section>
+          {/* COLECCIONES */}
           <section
             className="px-4"
             style={{ display: index === 3 ? "block" : "none" }}
@@ -196,7 +234,9 @@ export default function Result() {
             {collection?.results?.map((m, i) => (
               <div key={i} className="flex w-full border rounded-md mb-4">
                 <img
-                  src={`${urlImg}w92${m?.poster_path}`}
+                  src={
+                    m?.poster_path ? `${urlImg}w92${m?.poster_path}` : noPoster
+                  }
                   alt={m?.title}
                   className="rounded-l-lg h-[142px] w-[94px]"
                 />
@@ -208,6 +248,27 @@ export default function Result() {
                 </div>
               </div>
             ))}
+          </section>
+          {/* COMPANIES */}
+          <section
+            className="px-4"
+            style={{ display: index === 5 ? "block" : "none" }}
+          >
+            <ul className="w-full text-lg">
+              {company?.results?.map((c, i) => (
+                <Link key={i} to={`../company/${c?.id}`}>
+                  <li className="border-t border-amber-900 p-2 ">
+                    {c.name}
+                    <span
+                      className="bg-gray-300 text-white text-sm px-2 py-[0.8px] rounded ml-1"
+                      style={{ display: c?.origin_country ? "inline" : "none" }}
+                    >
+                      {c?.origin_country}
+                    </span>
+                  </li>
+                </Link>
+              ))}
+            </ul>
           </section>
         </main>
       </section>
