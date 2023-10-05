@@ -20,7 +20,7 @@ const rutas = createBrowserRouter(
         <Route exact path="/movies/detail/:mediaType/:id" element={<Detail />} />
         <Route exact path="/movies/detail/:mediaType/:id/credits" element={<CRedits />} />
         <Route exact path="/movies/person/:id" element={<Person />} />
-        <Route exact path="/movies/company/:id" element={<Company />} />
+        <Route exact path="/movies/company/:id/movie" element={<Company />} />
       </Route>
       {/* 
       <Route exact path="*" element={<ErrorPage />}></Route> */}

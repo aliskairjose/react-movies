@@ -157,14 +157,18 @@ export default function Result() {
           >
             {movies?.results?.map((m, i) => (
               <div key={i} className="flex w-full border rounded-md mb-4">
-                <img
-                  src={
-                    m?.poster_path ? `${urlImg}w92${m?.poster_path}` : noPoster
-                  }
-                  alt={m?.title}
-                  className="rounded-l-lg h-[142px] w-[94px]"
-                />
-                <div className="px-4 flex flex-col justify-around">
+                <Link to={`../detail/movie/${m?.id}`}>
+                  <img
+                    src={
+                      m?.poster_path
+                        ? `${urlImg}w92${m?.poster_path}`
+                        : noPoster
+                    }
+                    alt={m?.title}
+                    className="rounded-l-lg h-[142px] w-[94px]"
+                  />
+                </Link>
+                <div className="px-4 flex flex-col justify-around w-full">
                   <div>
                     <p className="font-medium text-lg">{m?.title}</p>
                     <p className="text-gray-400">{m?.release_date}</p>
@@ -181,6 +185,7 @@ export default function Result() {
           >
             {series?.results?.map((m, i) => (
               <div key={i} className="flex w-full border rounded-md mb-4">
+                <Link to={`../detail/tv/${m?.id}`}>
                 <img
                   src={
                     m?.poster_path ? `${urlImg}w92${m?.poster_path}` : noPoster
@@ -188,7 +193,8 @@ export default function Result() {
                   alt={m?.title}
                   className="rounded-l-lg h-[142px] w-[94px]"
                 />
-                <div className="px-4 flex flex-col justify-around">
+                </Link>
+                <div className="px-4 flex flex-col justify-around w-full">
                   <div>
                     <p className="font-medium text-lg">{m?.name}</p>
                     <p className="text-gray-400">{m?.first_air_date}</p>
@@ -256,7 +262,7 @@ export default function Result() {
           >
             <ul className="w-full text-lg">
               {company?.results?.map((c, i) => (
-                <Link key={i} to={`../company/${c?.id}`}>
+                <Link key={i} to={`../company/${c?.id}/movie`}>
                   <li className="border-t border-amber-900 p-2 ">
                     {c.name}
                     <span
