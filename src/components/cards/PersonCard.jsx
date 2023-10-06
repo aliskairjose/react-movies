@@ -18,7 +18,7 @@ export default function PersonCard({ person }) {
       </Link>
       <div className="m-2 text-sm">
         <p className="m-0 p-0 font-medium">{person?.name}</p>
-        <p className="m-0 p-0 font-light" >{person?.character}</p>
+        <p className="m-0 p-0 text-xs" >{person?.character}</p>
       </div>
     </div>
   );
