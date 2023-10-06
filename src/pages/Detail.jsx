@@ -193,13 +193,13 @@ export default function Detail() {
             <p className="font-medium text-xl">Productoras</p>
             <div className="gap-4 py-2 overflow-x-auto trending-display ">
               {detalle?.production_companies.map((c, i) => (
-                <div className="rounded-md w-[130px] shadow-md" key={i}>
-                  <img
+                <div className="rounded-md w-[130px] shadow" key={i}>
+                  <img  
                     src={
                       c.logo_path ? `${urlImg}w300/${c.logo_path}` : noPoster
                     }
                     alt={c?.name}
-                    className="rounded-md h-[154px] w-full object-contain"
+                    className="rounded-md h-[120px] w-full object-contain px-1"
                   />
                   <p className="text-sm font-medium m-2">{c?.name}</p>
                 </div>
