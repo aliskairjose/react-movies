@@ -287,6 +287,7 @@ export default function Detail() {
             <>
               <p className="font-medium">Canal</p>
               <img
+                className="h-12"
                 src={`${urlImg}/w154${detalle?.networks[0]?.logo_path}`}
                 alt={detalle?.networks[0]?.name}
               />
