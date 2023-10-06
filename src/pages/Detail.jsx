@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import {
   credits,
   detail,
+  externalIds,
   keywords,
   watchProviders,
 } from "../providers/movieAndTvSeries";
@@ -12,6 +13,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Link } from "react-router-dom";
 import PersonCard from "../components/cards/PersonCard";
 import { LinkIcon } from "@heroicons/react/20/solid";
+import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
@@ -21,20 +23,23 @@ export default function Detail() {
   const [creditos, setCreditos] = useState(null);
   const [claves, setClaves] = useState(null);
   const [proveedor, setProveedor] = useState(null);
+  const [externalID, setExternalID] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const [detailRes, creditsRes, keywordsRes, providersRes] =
+      const [detailRes, creditsRes, keywordsRes, providersRes, externalIDRes] =
         await Promise.allSettled([
           detail(mediaType, id),
           credits(mediaType, id),
           keywords(mediaType, id),
           watchProviders(mediaType, id),
+          externalIds(mediaType, id),
         ]);
       setDetalle(detailRes.value);
       setCreditos(creditsRes.value);
       setClaves(keywordsRes.value);
       setProveedor(providersRes.value);
+      setExternalID(externalIDRes.value);
     };
 
     fetchData().catch(console.error);
@@ -46,8 +51,6 @@ export default function Detail() {
     const date = new Date(detalle?.release_date);
     return date.getFullYear();
   };
-
-  // const getProviderLogo = () => proveedor?.results.VE?.flatrate[0].logo_path;
 
   const getLanguage = () => {
     return detalle?.spoken_languages.map((l) => {
@@ -65,25 +68,21 @@ export default function Detail() {
           backgroundImage: `url(${backdropImg()})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
+          backgroundPosition: 300,
         }}
       >
-        <div className="flex max-w-7xl m-auto absolute top-4 left-[5%]">
-          <div className="w-1/4 p-2">
+        <div className="flex max-w-7xl m-auto absolute top-6 left-[7%]">
+          <div className="">
             <img
-              className="rounded-md"
+              className="rounded-md w-[400px]"
               src={`${urlImg}original/${detalle?.poster_path}`}
               alt={detalle?.original_title}
             />
           </div>
-          <div className="w-3/4 pt-4 px-4 text-white">
+          <div className="w-full pt-4 px-4 text-white">
             <h1 className="text-4xl font-bold tracking-wider ">
               {detalle?.title}
               <span className="font-light text-3xl ms-2">({getYear()})</span>
-              {/* <img
-              src={`${urlImg}w45/${getProviderLogo()}`}
-              alt="providerLogo"
-              className="inline ms-3 rounded"
-            /> */}
             </h1>
             <p>
               {detalle?.release_date}{" "}
@@ -91,30 +90,38 @@ export default function Detail() {
                 ({detalle?.original_language})
               </span>
               {detalle?.genres.map((g, i) => (
-                <span key={i} className="px-1 before:content-['_●']">
+                <span key={i} className="px-1 after:content-['_,']">
                   {g.name}
                 </span>
               ))}
             </p>
             <div className="flex gap-3 items-center mt-4">
-              <div className="w-16 inline-block">
-                <CircularProgressbar
-                  value={Math.round(detalle?.vote_average * 10)}
-                  background
-                  backgroundPadding={5}
-                  strokeWidth={6}
-                  minValue={0}
-                  maxValue={100}
-                  text={`${Math.round(detalle?.vote_average * 10)}%`}
-                  styles={buildStyles({
-                    pathColor: `#92400e`,
-                    textSize: "27px",
-                    textColor: "black",
-                    backgroundColor: "#E1E3E5",
-                  })}
-                />
-              </div>
-              <span>Puntuación de usuario</span>
+              <ul>
+                <li>
+                  <div className="flex items-center gap-2">
+                    <div className="w-16 inline-block">
+                      <CircularProgressbar
+                        value={Math.round(detalle?.vote_average * 10)}
+                        background
+                        backgroundPadding={5}
+                        strokeWidth={6}
+                        minValue={0}
+                        maxValue={100}
+                        text={`${Math.round(detalle?.vote_average * 10)}%`}
+                        styles={buildStyles({
+                          pathColor: `#92400e`,
+                          textSize: "27px",
+                          textColor: "black",
+                          backgroundColor: "#E1E3E5",
+                        })}
+                      />
+                    </div>
+                    <div>
+                      <span>Puntuación de usuario</span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
             <p className="italic py-3 opacity-70">{detalle?.tagline}</p>
             <p className="font-medium text-xl">
@@ -175,12 +182,48 @@ export default function Detail() {
         </div>
         <div className="w-full py-7 px-4">
           <div className="mb-5">
-            <Link
-              to={detalle?.homepage}
-              style={{ visibility: detalle?.homepage ? "visible" : "hidden" }}
-            >
-              <LinkIcon className="h-6" />
-            </Link>
+            <ul className="inline-flex divide-x">
+              <li
+                className="px-2"
+                style={{
+                  display: externalID?.instagram_id ? "inline_block" : "none",
+                }}
+              >
+                <Link to={`https://instagram.com/${externalID?.instagram_id}`}>
+                  <BsInstagram className="h-[1.5rem] w-[1.5rem]" />
+                </Link>
+              </li>
+              <li
+                className="px-2"
+                style={{
+                  display: externalID?.facebook_id ? "inline_block" : "none",
+                }}
+              >
+                <Link to={`https://facebook.com/${externalID?.facebook_id}`}>
+                  <BsFacebook className="h-[1.5rem] w-[1.5rem]" />
+                </Link>
+              </li>
+              <li
+                className="px-2"
+                style={{
+                  display: externalID?.twitter_id ? "inline_block" : "none",
+                }}
+              >
+                <Link to={`https://twitter.com/${externalID?.twitter_id}`}>
+                  <BsTwitter className="h-[1.5rem] w-[1.5rem]" />
+                </Link>
+              </li>
+              <li
+                className="px-2"
+                style={{
+                  display: detalle?.homepage ? "inline_block" : "none",
+                }}
+              >
+                <Link to={detalle?.homepage}>
+                  <LinkIcon className="h-6" />
+                </Link>
+              </li>
+            </ul>
           </div>
           <p className="font-medium">Estado</p>
           <p className="mb-4">{detalle?.status}</p>
