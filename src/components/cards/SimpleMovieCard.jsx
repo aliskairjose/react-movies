@@ -17,7 +17,8 @@ export default function SimpleMovieCard({ movie }) {
         />
       </Link>
       <div className="m-2">
-        <p className="m-0 p-0 text-sm w-[120px]">{movie?.title}</p>
+        <p className="m-0 p-0 text-sm w-[120px]">{movie?.title || movie?.original_name}</p>
+        <p className="m-0 p-0 text-xs w-[120px]">{movie?.character}</p>
       </div>
     </div>
   );
