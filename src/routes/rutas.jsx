@@ -14,13 +14,13 @@ import Company from "../pages/Company";
 const rutas = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route exact path="/movies" element={<App />}>
-        <Route exact path="/movies" element={<Home />} />
-        <Route exact path="/movies/results" element={<Result />} />
-        <Route exact path="/movies/detail/:mediaType/:id" element={<Detail />} />
-        <Route exact path="/movies/detail/:mediaType/:id/credits" element={<CRedits />} />
-        <Route exact path="/movies/person/:id" element={<Person />} />
-        <Route exact path="/movies/company/:id/movie" element={<Company />} />
+      <Route exact path="/react-movies" element={<App />}>
+        <Route exact path="/react-movies" element={<Home />} />
+        <Route exact path="/react-movies/results" element={<Result />} />
+        <Route exact path="/react-movies/detail/:mediaType/:id" element={<Detail />} />
+        <Route exact path="/react-movies/detail/:mediaType/:id/credits" element={<CRedits />} />
+        <Route exact path="/react-movies/person/:id" element={<Person />} />
+        <Route exact path="/react-movies/company/:id/movie" element={<Company />} />
       </Route>
       {/* 
       <Route exact path="*" element={<ErrorPage />}></Route> */}
