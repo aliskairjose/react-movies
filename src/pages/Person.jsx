@@ -31,7 +31,7 @@ export default function Person() {
   }, []);
 
   return (
-    <div className="flex md:flex-row flex-col max-w-7xl mx-auto py-8">
+    <div className="flex md:flex-row flex-col max-w-7xl mx-auto py-8 md:px-0 px-2">
       <div className="md:w-3/12 w-full">
         <img
           className="rounded-xl mb-6 h-72 md:mx-0 mx-auto"
