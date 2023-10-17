@@ -6,7 +6,7 @@ import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
-export default function CRedits() {
+export default function Credits() {
   const { id, mediaType } = useParams();
   const [cast, setCast] = useState(null);
   const [crew, setCrew] = useState(null);

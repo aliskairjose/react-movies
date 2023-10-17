@@ -9,9 +9,9 @@ import Home from "../pages/Home";
 import Detail from "../pages/Detail";
 import Result from "../pages/Result";
 import Person from '../pages/Person';
-import CRedits from "../pages/Credits";
 import Company from "../pages/Company";
 import List from "../pages/List";
+import Credits from "../pages/Credits";
 
 const rutas = createHashRouter([
   {
@@ -32,7 +32,7 @@ const rutas = createHashRouter([
       },
       {
         path:'/detail/:mediaType/:id/credits',
-        element:<CRedits />
+        element:<Credits />
       },
       {
         path:'/react-movies/person/:id',
