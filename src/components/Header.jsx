@@ -34,7 +34,7 @@ export default function Navbar() {
     <header className="bg-amber-900 shadow-md">
       <nav className="mx-auto flex max-w-7xl items-center lg:justify-start justify-between p-4 lg:px-4" aria-label="Global">
         <div className="flex me-8">
-          <Link to={'../react-movies/'}  className="-m-1.5 p-1.5">
+          <Link to={'/'}  className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
           </Link>
