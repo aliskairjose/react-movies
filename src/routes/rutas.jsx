@@ -10,6 +10,7 @@ import Result from "../pages/Result";
 import Person from '../pages/Person';
 import CRedits from "../pages/Credits";
 import Company from "../pages/Company";
+import List from "../pages/List";
 
 const rutas = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const rutas = createBrowserRouter(
         <Route exact path="/react-movies/detail/:mediaType/:id/credits" element={<CRedits />} />
         <Route exact path="/react-movies/person/:id" element={<Person />} />
         <Route exact path="/react-movies/company/:id/movie" element={<Company />} />
+        <Route exact path="/react-movies/movies" element={<List />} />
       </Route>
       {/* 
       <Route exact path="*" element={<ErrorPage />}></Route> */}
