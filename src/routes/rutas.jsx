@@ -53,19 +53,22 @@ const rutas = createHashRouter([
 // const rutas = createBrowserRouter(
 //   createRoutesFromElements(
 //     <>
-//       <Route exact path="/react-movies/" element={<App />}>
-//         <Route exact path="/react-movies/" element={<Home />} />
-//         <Route exact path="/react-movies/results" element={<Result />} />
-//         <Route exact path="/react-movies/detail/:mediaType/:id" element={<Detail />} />
-//         <Route exact path="/react-movies/detail/:mediaType/:id/credits" element={<CRedits />} />
-//         <Route exact path="/react-movies/person/:id" element={<Person />} />
-//         <Route exact path="/react-movies/company/:id/movie" element={<Company />} />
-//         <Route exact path="/react-movies/movies" element={<List />} />
+//       <Route exact path="/" element={<App />}>
+//         <Route exact path="/" element={<Home />} />
+//         <Route exact path="/results" element={<Result />} />
+//         <Route exact path="/detail/:mediaType/:id" element={<Detail />} />
+//         <Route exact path="/detail/:mediaType/:id/credits" element={<CRedits />} />
+//         <Route exact path="/person/:id" element={<Person />} />
+//         <Route exact path="/company/:id/movie" element={<Company />} />
+//         <Route exact path="/movies" element={<List />} />
 //       </Route>
 //       {/* 
 //       <Route exact path="*" element={<ErrorPage />}></Route> */}
 //     </>
-//   )
+//   ),
+//   {
+//     basename:'/react-movies/'
+//   }
 // );
 
 export default rutas;
