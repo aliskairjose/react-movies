@@ -20,7 +20,7 @@ const peliculas = [
   { name: 'Mejor calificado', href: '#' },
 ]
 const personas = [
-  { name: 'Popular', href: '#' },
+  { name: 'Popular en personas', href: '#' },
 ]
 
 function classNames(...classes) {
@@ -65,12 +65,12 @@ export default function Navbar() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div className="p-4">
+              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-56 max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
+                <div className="p-1">
                   {peliculas.map((item) => (
                     <div
                       key={item.name}
-                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                      className="group relative flex items-center gap-x-6 rounded-lg p-2 text-sm leading-6 hover:bg-gray-50"
                     >
                       <div className="flex-auto">
                         <a href={item.href} className="block font-semibold text-gray-700">
@@ -100,12 +100,12 @@ export default function Navbar() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div className="p-4">
+              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-56 max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
+                <div className="p-1">
                   {seriesTV.map((item) => (
                     <div
                       key={item.name}
-                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                      className="group relative flex items-center gap-x-6 rounded-lg p-2 text-sm leading-6 hover:bg-gray-50"
                     >
                       <div className="flex-auto">
                         <a href={item.href} className="block font-semibold text-gray-700">
@@ -122,7 +122,7 @@ export default function Navbar() {
           </Popover>
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-300">
-              Personas
+                Personas
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-300" aria-hidden="true" />
             </Popover.Button>
 
@@ -135,12 +135,12 @@ export default function Navbar() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div className="p-4">
+              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-56 max-w-md overflow-hidden rounded bg-white shadow-lg ring-1 ring-gray-900/5">
+                <div className="p-1">
                   {personas.map((item) => (
                     <div
                       key={item.name}
-                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                      className="group relative flex items-center gap-x-6 rounded-lg p-2 text-sm leading-6 hover:bg-gray-50"
                     >
                       <div className="flex-auto">
                         <a href={item.href} className="block font-semibold text-gray-700">
@@ -152,10 +152,10 @@ export default function Navbar() {
                     </div>
                   ))}
                 </div>
-                
               </Popover.Panel>
             </Transition>
           </Popover>
+          
           <a href="#" className="text-sm font-semibold leading-6 lg:text-gray-300">
             Más
           </a>
