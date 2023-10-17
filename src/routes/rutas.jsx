@@ -35,15 +35,15 @@ const rutas = createHashRouter([
         element:<Credits />
       },
       {
-        path:'/react-movies/person/:id',
+        path:'/person/:id',
         element:<Person />
       },
       {
-        path:'/react-movies/movies',
+        path:'/movies',
         element:<List />
       },
       {
-        path:'/react-movies/company/:id/movie',
+        path:'/company/:id/movie',
         element:<Company />
       },
     ]
