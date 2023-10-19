@@ -165,7 +165,7 @@ export default function Result() {
                         : noPoster
                     }
                     alt={m?.title}
-                    className="rounded-l-lg h-[142px] w-[94px]"
+                    className="rounded-l-lg h-[142px] w-[110px]"
                   />
                 </Link>
                 <div className="px-4 flex flex-col justify-around w-full">
@@ -191,7 +191,7 @@ export default function Result() {
                     m?.poster_path ? `${urlImg}w92${m?.poster_path}` : noPoster
                   }
                   alt={m?.title}
-                  className="rounded-l-lg h-[142px] w-[94px]"
+                  className="rounded-l-lg h-[142px] w-[110px]"
                 />
                 </Link>
                 <div className="px-4 flex flex-col justify-around w-full">

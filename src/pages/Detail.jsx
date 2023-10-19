@@ -74,16 +74,13 @@ export default function Detail() {
   return (
     <>
       <div
-        className="bg-black md:h-[500px] min-h-screen relative fondo"
+        className="bg-black md:h-[500px] h-screen relative fondo bg-fixed bg-cover bg-no-repeat"
         style={{
           backgroundImage: `url(${backdropImg()})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: 300,
         }}
       >
-        <div className="flex md:flex-row flex-col max-w-7xl m-auto absolute top-6 left-[7%]">
-          <div className="">
+        <div className="flex md:flex-row flex-col max-w-7xl m-auto absolute md:top-6 top-2 md:left-[7%]">
+          <div className="hidden md:block">
             <img
               className="rounded-md md:w-[400px] w-[120px] md:mx-0 mx-auto"
               src={`${urlImg}original/${detalle?.poster_path}`}
@@ -208,7 +205,7 @@ export default function Detail() {
           </section>
 
           {/* RECOMENDACIONES */}
-          <section className="border-b pb-4 mt-6">
+          <section className="border-b pb-4 mt-6 px-4 md:px-1">
             <p className="font-medium text-xl">Recomendaciones</p>
             <div className="gap-4 py-2 overflow-x-auto trending-display ">
               {recomendaciones?.results.length > 0 ? (
@@ -230,14 +227,14 @@ export default function Detail() {
               ) : (
                 <p className="text-sm mt-3">
                   No tenemos suficiente información para recomendarte películas
-                  basadas en {detalle?.title || detalle?.name}. Puedes ayudarnos valorando las
+                  basadas en <span className="font-medium">{detalle?.title || detalle?.name}</span>. Puedes ayudarnos valorando las
                   películas que has visto.
                 </p>
               )}
             </div>
           </section>
         </div>
-        <div className="md:w-3/12 w-full py-7 px-4">
+        <div className="md:w-3/12 w-full md:py-7 py-2 md:px-6 px-4">
           <div className="mb-5">
             <ul className="inline-flex divide-x">
               {externalID?.instagram_id ? (

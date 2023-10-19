@@ -13,7 +13,7 @@ import { Fragment } from "react";
 
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
-export default function CardSmall({ data }) {
+export default function CardSmall({ data, mediaType }) {
   return (
     <>
       <div className="relative w-[150px]">
@@ -101,7 +101,7 @@ export default function CardSmall({ data }) {
           <EllipsisHorizontalIcon className="h-5 text-black" />
         </button> */}
         <div>
-          <Link to={`./detail/${data.media_type}/${data.id}`}>
+          <Link to={`./detail/${data.media_type||mediaType}/${data.id}`}>
             <img
               src={`${urlImg}w154/${data.poster_path}`}
               alt={data.title}

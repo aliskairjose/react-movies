@@ -12,6 +12,7 @@ import Person from '../pages/Person';
 import Company from "../pages/Company";
 import List from "../pages/List";
 import Credits from "../pages/Credits";
+import ErrorPage from "../pages/ErrorPage";
 
 const rutas = createHashRouter([
   {
@@ -20,7 +21,7 @@ const rutas = createHashRouter([
     children:[
       {
         path:'/',
-        element:<Home />
+        element:<Home />,
       },
       {
         path:'/results',
@@ -45,6 +46,10 @@ const rutas = createHashRouter([
       {
         path:'/company/:id/movie',
         element:<Company />
+      },
+      {
+        path:'*',
+        element:<ErrorPage />
       },
     ]
   }

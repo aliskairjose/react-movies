@@ -58,7 +58,7 @@ export default function TrendingSlider() {
           </Tab.List>
         </Tab.Group>
       </div>
-      <div className="gap-5 py-4 px-6 overflow-x-auto trending-display">
+      <div className="gap-5 py-4 px-6 overflow-x-scroll trending-display s">
         {data?.results.map((t, i) => (
           <CardSmall data={t} key={i} />
         ))}

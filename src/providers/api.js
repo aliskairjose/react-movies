@@ -1,4 +1,5 @@
 import axios from "axios";
+const accountId = import.meta.env.VITE_ACCOUNT_ID;
 
 const instance = axios.create({
   params: {

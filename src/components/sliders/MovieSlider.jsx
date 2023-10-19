@@ -92,7 +92,7 @@ export default function MovieSlider() {
       </div>
       <div className="gap-5 py-4 px-6 overflow-x-auto trending-display">
         {data?.results.map((t, i) => (
-          <CardSmall data={t} key={i} />
+          <CardSmall data={t} key={i} mediaType='movie' />
         ))}
       </div>
     </>

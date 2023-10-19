@@ -6,7 +6,7 @@ import axios from 'axios'
  * @returns 
  */
 export const detail = async(id) => {
-    return axios.get(`person/${id}?language=es-ES`)
+    return axios.get(`person/${id}`)
     .then(res => res.data)
     .catch(console.error)
 }
@@ -18,6 +18,16 @@ export const detail = async(id) => {
  */
 export const combinedCredits = async(id) => {
     return axios.get(`person/${id}/combined_credits?language=es-ES`)
+    .then(res => res.data)
+    .catch(console.error)
+}
+/**
+ * 
+ * @param {number} id id de la persona 
+ * @returns 
+ */
+export const movieCredits = async(id) => {
+    return axios.get(`person/${id}/movie_credits`)
     .then(res => res.data)
     .catch(console.error)
 }

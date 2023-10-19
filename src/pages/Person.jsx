@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { combinedCredits, detail } from "../providers/people";
+import { combinedCredits, detail, movieCredits } from "../providers/people";
 import { useParams } from "react-router-dom";
 import SimpleMovieCard from "../components/cards/SimpleMovieCard";
 
@@ -15,16 +15,17 @@ const GENDER = {
 export default function Person() {
   const { id } = useParams();
   const [person, setPerson] = useState(null);
-  const [combined, setCombined] = useState(null);
+  // const [combined, setCombined] = useState(null);
+  const [movieCredit, setMovieCredit] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
-      const [detalleRes, combinedRes] = await Promise.allSettled([
+      const [detalleRes, movieCreditsRes] = await Promise.allSettled([
         detail(id),
-        combinedCredits(id),
+        movieCredits(id),
       ]);
       setPerson(detalleRes.value);
-      setCombined(combinedRes.value);
+      setMovieCredit(movieCreditsRes.value);
     };
 
     fetchData().catch(console.error);
@@ -56,17 +57,26 @@ export default function Person() {
       </div>
       <div className="w-9/12 pl-6 ">
         <h1 className="font-semibold text-3xl mt-1 mb-10">{person?.name}</h1>
-        <h3 className="text-xl font-medium mb-2">Biografia</h3>
+        <h3 className="text-xl font-medium mb-2">Biografía</h3>
         {person?.biography ? (
           <p className="mb-6">{person?.biography}</p>
         ) : (
           <p className="mb-6">No tenemos una biografía de {person?.name}.</p>
         )}
-        <h3 className="text-xl font-medium mb-2">Conocido por</h3>
+        <h3 className="text-xl font-medium mb-2">{person?.gender===1 ? 'Conocida' : 'Conocido'} por</h3>
         <div className="gap-3 overflow-x-auto trending-display ">
-          {combined?.cast
+          {movieCredit?.cast.length > 0 
+          ?(
+            movieCredit?.cast
             ?.map((c, i) => <SimpleMovieCard movie={c} key={i} />)
-            .slice(0, 10)}
+            .slice(0, 10)
+          )
+          :(
+            movieCredit?.crew
+            ?.map((c, i) => <SimpleMovieCard movie={c} key={i} />)
+            .slice(0, 10)
+          )
+        }
         </div>
       </div>
     </div>
