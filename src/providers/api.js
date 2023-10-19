@@ -42,3 +42,18 @@ export const tvSeries = async (slug) => {
     .then((res) => res.data)
     .catch(console.error);
 };
+
+/**
+ *
+ * @param {string} mediaType movie | tv
+ * @param {*} id
+ * @returns
+ */
+export const movieAndTvSeriesDetail = async (mediaType, id) => {
+  return await axios
+    .get(`${mediaType}/${id}`, {params:{
+      append_to_response: 'external_ids,credits,keywords,recommendations,watch/providers'
+    }})
+    .then((res) => res.data)
+    .catch(console.error);
+};

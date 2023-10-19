@@ -49,7 +49,6 @@ export default function Detail() {
       setClaves(keywordsRes.value);
       setProveedor(providersRes.value);
       setExternalID(externalIDRes.value);
-      setExternalID(externalIDRes.value);
       setRecomendaciones(recommendationsRes.value);
     };
 
@@ -217,7 +216,7 @@ export default function Detail() {
                       className="rounded-md w-[250px]"
                     />
                     <div className="flex justify-between mt-2 px-1">
-                      <span className="text-sm">{r?.name}</span>
+                      <span className="text-sm">{r?.name || r?.title}</span>
                       <span className="text-sm">{`${Math.round(
                         r?.vote_average * 10
                       )}%`}</span>
