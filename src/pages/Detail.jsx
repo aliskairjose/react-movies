@@ -1,57 +1,28 @@
 import { useParams } from "react-router-dom";
 import noPoster from "../assets/images/no-poster.jpeg";
 import { useEffect, useState } from "react";
-import {
-  credits,
-  detail,
-  externalIds,
-  keywords,
-  recommendations,
-  watchProviders,
-} from "../providers/movieAndTvSeries";
 import "../assets/styles/Detail.css";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { Link } from "react-router-dom";
 import PersonCard from "../components/cards/PersonCard";
 import { LinkIcon } from "@heroicons/react/20/solid";
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
+import { movieAndTvSeriesDetail } from "../providers/api";
+import YoutubeEmbed from "../components/YoutubeEmbed";
 
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
 export default function Detail() {
   const { mediaType, id } = useParams();
   const [detalle, setDetalle] = useState(null);
-  const [creditos, setCreditos] = useState(null);
-  const [claves, setClaves] = useState(null);
-  const [proveedor, setProveedor] = useState(null);
-  const [externalID, setExternalID] = useState(null);
-  const [recomendaciones, setRecomendaciones] = useState(null);
+
 
   useEffect(() => {
     const fetchData = async () => {
-      const [
-        detailRes,
-        creditsRes,
-        keywordsRes,
-        providersRes,
-        externalIDRes,
-        recommendationsRes,
-      ] = await Promise.allSettled([
-        detail(mediaType, id),
-        credits(mediaType, id),
-        keywords(mediaType, id),
-        watchProviders(mediaType, id),
-        externalIds(mediaType, id),
-        recommendations(mediaType, id),
-      ]);
-      setDetalle(detailRes.value);
-      setCreditos(creditsRes.value);
-      setClaves(keywordsRes.value);
-      setProveedor(providersRes.value);
-      setExternalID(externalIDRes.value);
-      setRecomendaciones(recommendationsRes.value);
-    };
-
+      const data = await movieAndTvSeriesDetail(mediaType, id)
+      console.log(data)
+      setDetalle(data)
+    }
     fetchData().catch(console.error);
   }, []);
 
@@ -82,7 +53,7 @@ export default function Detail() {
           <div className="hidden md:block">
             <img
               className="rounded-md md:w-[400px] w-[120px] md:mx-0 mx-auto"
-              src={`${urlImg}original/${detalle?.poster_path}`}
+              src={`${urlImg}original${detalle?.poster_path}`}
               alt={detalle?.original_title}
             />
           </div>
@@ -139,7 +110,7 @@ export default function Detail() {
             </p>
             {mediaType === "tv" ? (
               <div className="grid gap-2 grid-cols-3 w-full mt-4">
-                {creditos?.cast
+                {detalle?.credits?.cast
                   .map((c, i) => (
                     <p key={i} className="text-center text-sm">
                       <span className="font-medium block">{c.name}</span>
@@ -152,7 +123,7 @@ export default function Detail() {
               </div>
             ) : (
               <div className="grid gap-2 grid-cols-3 w-full mt-4">
-                {creditos?.crew
+                {detalle?.credits?.crew
                   .map((c, i) => (
                     <p key={i} className="text-center text-sm">
                       <span className="font-medium block">{c.name}</span>
@@ -170,7 +141,7 @@ export default function Detail() {
           <section className="border-b pb-4 my-4">
             <p className="font-medium text-xl">Actores principales</p>
             <div className="gap-4 py-2 overflow-x-auto trending-display ">
-              {creditos?.cast
+              {detalle?.credits?.cast
                 .map((c, i) => <PersonCard person={c} key={i} />)
                 .slice(0, 9)}
               <div className="flex items-center me-12 ms-2">
@@ -184,6 +155,15 @@ export default function Detail() {
             </Link>
           </section>
 
+          {/* VIDEOS */}
+          <section className="border-b pb-4 mt-6">
+            <p className="font-medium text-xl">Videos</p>
+            <div className="gap-4 py-2 overflow-x-auto trending-display ">
+              {detalle?.videos.results.map((c, i) => (
+                  <YoutubeEmbed embedId={c.key} key={i}/>
+              ))}
+            </div>
+          </section>
           {/* PRODUCTORAS */}
           <section className="border-b pb-4 mt-6">
             <p className="font-medium text-xl">Productoras</p>
@@ -207,8 +187,8 @@ export default function Detail() {
           <section className="border-b pb-4 mt-6 px-4 md:px-1">
             <p className="font-medium text-xl">Recomendaciones</p>
             <div className="gap-4 py-2 overflow-x-auto trending-display ">
-              {recomendaciones?.results.length > 0 ? (
-                recomendaciones?.results.map((r, i) => (
+              {detalle?.recommendations.results.length > 0 ? (
+                detalle?.recommendations.results.map((r, i) => (
                   <div key={i}>
                     <img
                       src={`${urlImg}/original${r?.backdrop_path}`}
@@ -236,10 +216,10 @@ export default function Detail() {
         <div className="md:w-3/12 w-full md:py-7 py-2 md:px-6 px-4">
           <div className="mb-5">
             <ul className="inline-flex divide-x">
-              {externalID?.instagram_id ? (
+              {detalle?.externainstagram_id ? (
                 <li className="px-2">
                   <Link
-                    to={`https://instagram.com/${externalID?.instagram_id}`}
+                    to={`https://instagram.com/${detalle?.externainstagram_id}`}
                   >
                     <BsInstagram className="h-[1.5rem] w-[1.5rem]" />
                   </Link>
@@ -247,18 +227,18 @@ export default function Detail() {
               ) : (
                 <></>
               )}
-              {externalID?.facebook_id ? (
+              {detalle?.externafacebook_id ? (
                 <li className="px-2">
-                  <Link to={`https://facebook.com/${externalID?.facebook_id}`}>
+                  <Link to={`https://facebook.com/${detalle?.externafacebook_id}`}>
                     <BsFacebook className="h-[1.5rem] w-[1.5rem]" />
                   </Link>
                 </li>
               ) : (
                 <></>
               )}
-              {externalID?.twitter_id ? (
+              {detalle?.externatwitter_id ? (
                 <li className="px-2">
-                  <Link to={`https://twitter.com/${externalID?.twitter_id}`}>
+                  <Link to={`https://twitter.com/${detalle?.externatwitter_id}`}>
                     <BsTwitter className="h-[1.5rem] w-[1.5rem]" />
                   </Link>
                 </li>
@@ -297,8 +277,8 @@ export default function Detail() {
 
           <p className="font-medium">Palabras claves</p>
           <p className="mb-4 flex-wrap flex">
-            {claves?.keywords
-              ? claves?.keywords.map((k, i) => (
+            {detalle?.keywords.keywords
+              ? detalle?.keywords.keywords.map((k, i) => (
                   <span
                     className="border me-1 mb-2 px-3 py-1 rounded-md bg-gray-200 text-amber-900 shadow text-xs"
                     key={i}
@@ -306,7 +286,7 @@ export default function Detail() {
                     {k.name}
                   </span>
                 ))
-              : claves?.results.map((k, i) => (
+              : detalle?.keywords?.results.map((k, i) => (
                   <span
                     className="border me-1 mb-2 px-3 py-1 rounded-md bg-gray-200 text-amber-950 shadow text-xs"
                     key={i}

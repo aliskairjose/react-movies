@@ -28,7 +28,7 @@ export default function MovieSlider() {
   };
   return (
     <>
-      <div className="ms-6 flex">
+      <div className="ms-6 flex md:flex-row flex-col">
         <p className="home-subtitle">Peliculas</p>
         <Tab.Group
           className="w-[450px]"

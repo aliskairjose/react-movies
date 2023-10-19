@@ -10,9 +10,9 @@ import Detail from "../pages/Detail";
 import Result from "../pages/Result";
 import Person from '../pages/Person';
 import Company from "../pages/Company";
-import List from "../pages/List";
 import Credits from "../pages/Credits";
 import ErrorPage from "../pages/ErrorPage";
+import MoviList from "../pages/MovieList";
 
 const rutas = createHashRouter([
   {
@@ -40,12 +40,12 @@ const rutas = createHashRouter([
         element:<Person />
       },
       {
-        path:'/movies',
-        element:<List />
-      },
-      {
         path:'/company/:id/movie',
         element:<Company />
+      },
+      {
+        path:'/movies/:slug',
+        element:<MoviList />
       },
       {
         path:'*',

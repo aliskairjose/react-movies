@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { credits, detail } from "../providers/movieAndTvSeries";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import profileImg from "../assets/images/no-profile.webp";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+import { movieAndTvSeriesDetail } from "../providers/api";
 
 const urlImg = import.meta.env.VITE_IMAGE_BASE_URL;
 
@@ -15,13 +15,11 @@ export default function Credits() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const [creditsRes, movieRes] = await Promise.allSettled([
-        credits(mediaType, id),
-        detail(mediaType, id),
-      ]);
-      setCast(creditsRes.value.cast);
-      setCrew(creditsRes.value.crew);
-      setMovie(movieRes.value);
+      const data = await movieAndTvSeriesDetail(mediaType, id);
+      setMovie(data);
+      setCast(data.credits.cast);
+      setCrew(data.credits.crew);
+     
     };
     fetchData().catch(console.error);
   }, []);

@@ -10,11 +10,11 @@ import { Link } from 'react-router-dom'
 const seriesTV = [
   { name: 'Popular', href: '#' },
   { name: 'Transmitiendo hoy', href: '#' },
-  { name: 'En televisión', href: '#' },
-  { name: 'Mejor calificado', href: '#' },
+  { name: 'En televisión', href: '' },
+  { name: 'Mejor calificado', href: 'top_rated' },
 ]
 const peliculas = [
-  { name: 'Popular', href: '#' },
+  { name: 'Popular', href: '#/movies/popular' },
   { name: 'En cartelera', href: '#' },
   { name: 'Próximo', href: '#' },
   { name: 'Mejor calificado', href: '#' },

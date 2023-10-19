@@ -52,8 +52,23 @@ export const tvSeries = async (slug) => {
 export const movieAndTvSeriesDetail = async (mediaType, id) => {
   return await axios
     .get(`${mediaType}/${id}`, {params:{
-      append_to_response: 'external_ids,credits,keywords,recommendations,watch/providers'
+      append_to_response: 'external_ids,credits,keywords,recommendations,watch/providers,videos'
     }})
     .then((res) => res.data)
     .catch(console.error);
 };
+
+/**
+ * 
+ * @param {number} id Id de la persona
+ * @returns 
+ */
+export const person = async(id) => {
+  return axios.get(`person/${id}`, {
+    params:{
+      append_to_response:'movie_credits,tv_credits'
+    }
+  })
+  .then(res => res.data)
+  .catch(console.error)
+}

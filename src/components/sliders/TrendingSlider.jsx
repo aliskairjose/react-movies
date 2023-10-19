@@ -22,7 +22,7 @@ export default function TrendingSlider() {
 
   return (
     <>
-      <div className="ms-6 flex">
+      <div className="ms-6 flex md:flex-row flex-col">
         <p className="home-subtitle">Tendecias</p>
         <Tab.Group
           className="w-52"
