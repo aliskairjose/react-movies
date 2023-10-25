@@ -1,8 +1,5 @@
 import {
-  Route,
-  createBrowserRouter,
   createHashRouter,
-  createRoutesFromElements,
 } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
@@ -12,7 +9,7 @@ import Person from '../pages/Person';
 import Company from "../pages/Company";
 import Credits from "../pages/Credits";
 import ErrorPage from "../pages/ErrorPage";
-import MoviList from "../pages/MovieList";
+import MovieAndTvShowList from "../pages/MovieAndTvShowList";
 
 const rutas = createHashRouter([
   {
@@ -44,8 +41,8 @@ const rutas = createHashRouter([
         element:<Company />
       },
       {
-        path:'/movies/:slug',
-        element:<MoviList />
+        path:'/:mediaType/:slug',
+        element:<MovieAndTvShowList />
       },
       {
         path:'*',

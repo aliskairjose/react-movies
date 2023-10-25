@@ -97,9 +97,6 @@ export default function CardSmall({ data, mediaType }) {
             </Transition>
           </Menu>
         </div>
-        {/* <button className="absolute right-3 top-3 bg-gray-100/50 hover:bg-amber-700 font-semibold hover:text-white rounded-full" >
-          <EllipsisHorizontalIcon className="h-5 text-black" />
-        </button> */}
         <div>
           <Link to={`./detail/${data.media_type||mediaType}/${data.id}`}>
             <img

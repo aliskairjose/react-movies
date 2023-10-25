@@ -20,7 +20,6 @@ export default function Detail() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await movieAndTvSeriesDetail(mediaType, id)
-      console.log(data)
       setDetalle(data)
     }
     fetchData().catch(console.error);

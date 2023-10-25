@@ -25,7 +25,7 @@ export const trending = async (slug, timeWindow = "day") => {
  * @returns
  */
 export const movies = async (slug) => {
-  return await axios
+  return await instance
     .get(`movie/${slug}`)
     .then((res) => res.data)
     .catch(console.error);

@@ -1,42 +1,44 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
-import {
-  Bars3Icon,
-  XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import { Link } from 'react-router-dom'
+import { Fragment, useState } from "react";
+import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Link } from "react-router-dom";
 
 const seriesTV = [
-  { name: 'Popular', href: '#' },
-  { name: 'Transmitiendo hoy', href: '#' },
-  { name: 'En televisión', href: '' },
-  { name: 'Mejor calificado', href: 'top_rated' },
-]
+  { name: "Popular", href: "tv/popular" },
+  { name: "Transmitiendo hoy", href: "tv/airing_today" },
+  { name: "En televisión", href: "tv/on_the_air" },
+  { name: "Mejor calificado", href: "tv/top_rated" },
+];
 const peliculas = [
-  { name: 'Popular', href: '#/movies/popular' },
-  { name: 'En cartelera', href: '#' },
-  { name: 'Próximo', href: '#' },
-  { name: 'Mejor calificado', href: '#' },
-]
-const personas = [
-  { name: 'Popular en personas', href: '#' },
-]
+  { name: "Popular", href: "movies/popular" },
+  { name: "En cartelera", href: "movies/now_playing" },
+  { name: "Próximo", href: "movies/upcoming" },
+  { name: "Mejor calificado", href: "movies/top_rated" },
+];
+const personas = [{ name: "Popular en personas", href: "#" }];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="bg-amber-900 shadow-md">
-      <nav className="mx-auto flex max-w-7xl items-center lg:justify-start justify-between p-4 lg:px-4" aria-label="Global">
+      <nav
+        className="mx-auto flex max-w-7xl items-center lg:justify-start justify-between p-4 lg:px-4"
+        aria-label="Global"
+      >
         <div className="flex me-8">
-          <Link to={'/'}  className="-m-1.5 p-1.5">
+          <Link to={"/"} className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <img
+              className="h-8 w-auto"
+              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              alt=""
+            />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -53,7 +55,10 @@ export default function Navbar() {
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-300">
               Películas
-              <ChevronDownIcon className="h-5 w-5 flex-none text-gray-300" aria-hidden="true" />
+              <ChevronDownIcon
+                className="h-5 w-5 flex-none text-gray-300"
+                aria-hidden="true"
+              />
             </Popover.Button>
 
             <Transition
@@ -73,22 +78,26 @@ export default function Navbar() {
                       className="group relative flex items-center gap-x-6 rounded-lg p-2 text-sm leading-6 hover:bg-gray-50"
                     >
                       <div className="flex-auto">
-                        <a href={item.href} className="block font-semibold text-gray-700">
+                        <Link
+                          to={item.href}
+                          className="block font-semibold text-gray-700"
+                        >
                           {item.name}
-                          <span className="absolute inset-0" />
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   ))}
                 </div>
-                
               </Popover.Panel>
             </Transition>
           </Popover>
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-300">
               Series de TV
-              <ChevronDownIcon className="h-5 w-5 flex-none text-gray-300" aria-hidden="true" />
+              <ChevronDownIcon
+                className="h-5 w-5 flex-none text-gray-300"
+                aria-hidden="true"
+              />
             </Popover.Button>
 
             <Transition
@@ -108,11 +117,12 @@ export default function Navbar() {
                       className="group relative flex items-center gap-x-6 rounded-lg p-2 text-sm leading-6 hover:bg-gray-50"
                     >
                       <div className="flex-auto">
-                        <a href={item.href} className="block font-semibold text-gray-700">
+                      <Link
+                          to={item.href}
+                          className="block font-semibold text-gray-700"
+                        >
                           {item.name}
-                          <span className="absolute inset-0" />
-                        </a>
-                        <p className="mt-1 text-gray-700">{item.description}</p>
+                        </Link>
                       </div>
                     </div>
                   ))}
@@ -122,8 +132,11 @@ export default function Navbar() {
           </Popover>
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-300">
-                Personas
-              <ChevronDownIcon className="h-5 w-5 flex-none text-gray-300" aria-hidden="true" />
+              Personas
+              <ChevronDownIcon
+                className="h-5 w-5 flex-none text-gray-300"
+                aria-hidden="true"
+              />
             </Popover.Button>
 
             <Transition
@@ -143,11 +156,12 @@ export default function Navbar() {
                       className="group relative flex items-center gap-x-6 rounded-lg p-2 text-sm leading-6 hover:bg-gray-50"
                     >
                       <div className="flex-auto">
-                        <a href={item.href} className="block font-semibold text-gray-700">
+                      <Link
+                          to={item.href}
+                          className="block font-semibold text-gray-700"
+                        >
                           {item.name}
-                          <span className="absolute inset-0" />
-                        </a>
-                        <p className="mt-1 text-gray-700">{item.description}</p>
+                        </Link>
                       </div>
                     </div>
                   ))}
@@ -155,13 +169,21 @@ export default function Navbar() {
               </Popover.Panel>
             </Transition>
           </Popover>
-          
-          <a href="#" className="text-sm font-semibold leading-6 lg:text-gray-300">
+
+          <a
+            href="#"
+            className="text-sm font-semibold leading-6 lg:text-gray-300"
+          >
             Más
           </a>
         </Popover.Group>
       </nav>
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      <Dialog
+        as="div"
+        className="lg:hidden"
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+      >
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
@@ -191,7 +213,10 @@ export default function Navbar() {
                       <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-500 hover:bg-gray-50">
                         Películas
                         <ChevronDownIcon
-                          className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
+                          className={classNames(
+                            open ? "rotate-180" : "",
+                            "h-5 w-5 flex-none"
+                          )}
                           aria-hidden="true"
                         />
                       </Disclosure.Button>
@@ -234,6 +259,5 @@ export default function Navbar() {
         </Dialog.Panel>
       </Dialog>
     </header>
-  )
+  );
 }
-
